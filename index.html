@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="一个适合手机浏览的发型灵感网站，可搜索、筛选、收藏、对比，并生成给理发师看的沟通说明。"
+    />
+    <title>发型灵感馆</title>
+    <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="toolbar" aria-label="发型筛选与搜索">
+        <div>
+          <p class="eyebrow">发型灵感馆</p>
+          <h1>找到适合你的发型，收藏、对比，再带去给理发师看。</h1>
+        </div>
+        <label class="search">
+          <span>搜索</span>
+          <input id="searchInput" type="search" placeholder="波波头、卷发、刘海、低维护" />
+        </label>
+      </section>
+
+      <section class="layout">
+        <aside class="filters" aria-label="筛选条件">
+          <div class="filter-group">
+            <p>长度</p>
+            <div class="chips" id="lengthFilters"></div>
+          </div>
+          <div class="filter-group">
+            <p>发质纹理</p>
+            <div class="chips" id="textureFilters"></div>
+          </div>
+          <div class="filter-group">
+            <p>打理难度</p>
+            <div class="chips" id="maintenanceFilters"></div>
+          </div>
+          <button id="resetButton" class="secondary-button">重置</button>
+        </aside>
+
+        <section class="content">
+          <div class="summary">
+            <strong id="resultCount">0 款发型</strong>
+            <span id="savedCount">已收藏 0</span>
+            <span id="compareCount">对比中 0</span>
+          </div>
+          <p class="notice" id="notice" hidden></p>
+          <div class="grid" id="styleGrid"></div>
+        </section>
+
+        <aside class="detail" id="detailPanel" aria-live="polite">
+          <p class="empty-detail">选择一款发型，查看打理建议和可直接给理发师看的说明。</p>
+        </aside>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
