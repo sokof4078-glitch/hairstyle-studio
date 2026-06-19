@@ -200,7 +200,7 @@ function renderCard(style) {
   return `
     <article class="card">
       <button class="style-image" data-action="select" data-id="${style.id}" aria-label="查看${style.name}详情">
-        <img src="${style.image}" alt="${style.alt}" loading="lazy" />
+        ${renderImage(style, "", "lazy")}
         <span>${style.category}</span>
       </button>
       <div class="card-body">
@@ -238,7 +238,7 @@ function renderDetail() {
   }
 
   detail.innerHTML = `
-    <img class="detail-image" src="${selected.image}" alt="${selected.alt}" />
+    ${renderImage(selected, "detail-image")}
     <h2>${selected.name}</h2>
     <div class="tags">
       ${[labelFor(selected.length, "length"), labelFor(selected.texture, "texture"), labelFor(selected.maintenance, "maintenance"), ...selected.vibe]
@@ -258,6 +258,16 @@ function renderDetail() {
       <p>${selected.careRoutine.join("、")}</p>
     </div>
   `
+}
+
+function fallbackImageFor(style) {
+  return `./${style.id}.jpg`
+}
+
+function renderImage(style, className = "", loading = "") {
+  const classAttr = className ? ` class="${className}"` : ""
+  const loadingAttr = loading ? ` loading="${loading}"` : ""
+  return `<img${classAttr} src="${style.image}" data-fallback-src="${fallbackImageFor(style)}" alt="${style.alt}"${loadingAttr} onerror="this.onerror=null;this.src=this.dataset.fallbackSrc" />`
 }
 
 function flash(message) {
